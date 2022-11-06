@@ -36,13 +36,16 @@ export function User(props) {
         })
     }
 
-    console.log(props)
-
     return (
         <div className="user">
             <UserCard user={user} isInDetails={true}/>
             <div className="user-tasks-holder">
-                { userTasks.map(task => <TaskCard key={task.id} task={task} onTaskDelete={onDeleteHandler} changeStatus={changeStatusHandler} />) }
+                { !props.task ? <h2>No tasks assigned!</h2> : userTasks.map( (task) => {
+                    if(task.student.name !== user.name) {
+                        return "";
+                    }
+                    return <TaskCard key={task.id} task={task} onTaskDelete={onDeleteHandler} changeStatus={changeStatusHandler} />
+                }) }
             </div>
         </div>
     );
