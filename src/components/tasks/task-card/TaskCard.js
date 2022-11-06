@@ -7,6 +7,7 @@ export function TaskCard({ task, onTaskDelete, changeStatus }) {
 
     const navigateToEdit = () => {
         navigate(`/task/edit/${task.id}`)
+        // navigate(`/task/edit/${task.id}/student/${task.student.id}`)
     }
 
     const navigateToTasking = () => {
@@ -18,7 +19,6 @@ export function TaskCard({ task, onTaskDelete, changeStatus }) {
     }
 
     const renderButtons = () => {
-        // if(loggedUser && (loggedUser.role === "admin" || loggedUser.id === task.authorId)) {
             return (
                 <div>
                     <Button variant="primary" onClick={navigateToEdit}>Edit</Button>
@@ -26,7 +26,6 @@ export function TaskCard({ task, onTaskDelete, changeStatus }) {
                     <Button variant="warning" onClick={() => navigateToTasking()}>Tasking</Button>
                 </div>
             );
-        // }
     };
 
     return(

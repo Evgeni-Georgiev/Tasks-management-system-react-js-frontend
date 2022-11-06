@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import {getTaskById, saveTask, TaskStatus} from "../../../utils/http-utils/task-requests";
+import {getTaskById, saveTask} from "../../../utils/http-utils/task-requests";
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import "./TaskForm.scss";
@@ -19,28 +19,23 @@ export function TaskForm() {
 
     useEffect(() => {
         getAllUsers().then(response => {
-            setUsers(response.data); // thus way, the variable 'users' will be updated and will now have an array of all users coming from the API
+            setUsers(response.data);
         });
     }, []);
 
     // Update Task
-    // the useEffect will send a request for the id,
-    // if there is an id, then get it and display the data by setting a state in the task const
     useEffect(() => {
-        if(params.id) { // by checking the URL, if there are parameters...
-                                        // when we get the task, save in the state
+        if(params.id) {
             getTaskById(params.id).then((response) => {
                 setTask(response.data);
             });
         }
-    }, [params.id]); // params.id is created outside the state of useEffect => the useEffect is not controlling it.
-    // By adding params.id as an option to the array, the useEffect hook will execute everytime the id is changed
+    }, [params.id]);
 
 
     const onInputChange = (event) => {
         setTask( (prevState) => {
             return {...prevState, [event.target.name]: event.target.value}
-            // get all that was before as values +==,== the new field and its value will come from event.target.value
         } );
     }
 
@@ -52,6 +47,8 @@ export function TaskForm() {
             navigate('/tasks-list')
         });
     }
+
+    console.log(task)
 
     return (
         <div className="task-form-wrapper">
@@ -65,6 +62,13 @@ export function TaskForm() {
                     <Form.Label>Description</Form.Label>
                     <Form.Control type="text" placeholder="Enter Description" name="description" value={task.description} onChange={onInputChange} />
                 </Form.Group>
+
+                {/* {task.id ? <Form.Group className="mb-3" controlId="formBasicAssign">
+                    <Form.Label>Assign</Form.Label>
+                    <Form.Select placeholder="Select Assign" name="student" onChange={onInputChange}>
+                        { users.map(user => <option key={user.id} value={JSON.stringify(user)}>{user.name}</option>)}
+                    </Form.Select>
+                </Form.Group> : "" } */}
 
                 <Button variant="primary" type="submit">
                     {task.id ? "Edit Task" : "Create Task"}

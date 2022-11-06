@@ -2,10 +2,7 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getTaskById} from "../../../utils/http-utils/task-requests";
 import {TaskCard} from "../task-card/TaskCard";
-import {UserCard} from "/home/eugene/Desktop/tasks-management-system-frontend/src/components/users/user-card/UserCard.js";
-
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
+import {UserCard} from "../../users/user-card/UserCard";
 
 export function Task(props) {
 
@@ -19,12 +16,15 @@ export function Task(props) {
         })
     }, [params.id])
 
+    console.log(params)
+
     return (
         <div>
             <div className="task">
             <TaskCard task={task} isInDetails={true}/>
             <div className="user-tasks-holder">
-                <UserCard key={task?.student.id} user={task?.student} />
+                {!props.user ? <h2>No user assigned!</h2> : <UserCard key={task?.student.id} user={task?.student} />}
+                {/* <UserCard key={task?.student.id} user={task?.student} /> */}
             </div>
         </div>
         </div>

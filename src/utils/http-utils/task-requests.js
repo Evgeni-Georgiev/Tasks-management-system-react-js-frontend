@@ -1,16 +1,8 @@
 import axios from "axios";
-import {getLoggedUser} from "./user-requests";
 
-const apiUrl = "http://localhost:8080/api/v1/task";
+const apiUrl = process.env.TASK_APP_URL;
 
 // N-numerator can imitate as objects that hold consts. N-numerator existis only in typed languages. JS officialy does not have N-numerator
-
-export const TaskStatus = {
-    NEW: "New",
-    IN_PROGRESS: "In Progress",
-    IN_REVIEW: "In Review",
-    DONE: "Done"
-}
 
 export function getAllTasks() {
     return axios.get(apiUrl);
@@ -24,6 +16,10 @@ export function getTaskById(taskId) {
     return axios.get(`${apiUrl}/${taskId}`)
 }
 
+export function getTaskAndStudentById(taskId, studentId) {
+    return axios.get(`${apiUrl}/${taskId}/student/${studentId}`);
+}
+
 export function deleteTask(taskId) {
     return axios.delete(`${apiUrl}/${taskId}`);
 }
@@ -35,5 +31,6 @@ export function saveTask(task) {
     }
 
     // update task
+    // return axios.put(`${apiUrl}/${task.id}/student/${task.student.id}`, task);
     return axios.put(`${apiUrl}/${task.id}`, task);
 }
