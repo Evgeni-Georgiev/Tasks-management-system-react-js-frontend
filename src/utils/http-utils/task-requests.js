@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const apiUrl = process.env.TASK_APP_URL;
+// const apiUrl = process.env.TASK_APP_URL;
+const apiUrl = "http://localhost:8080/api/v1/task";
 
 // N-numerator can imitate as objects that hold consts. N-numerator existis only in typed languages. JS officialy does not have N-numerator
 

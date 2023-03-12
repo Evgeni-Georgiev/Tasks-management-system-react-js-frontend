@@ -7,7 +7,8 @@ import axios from "axios";
 
 // variable to hold the url for the server
 
-const apiUrl = process.env.STUDENT_APP_URL;
+// const apiUrl = process.env.STUDENT_APP_URL;
+const apiUrl = "http://localhost:8080/api/v1/student";
 
 export function getAllUsers() {
     return axios.get(apiUrl);

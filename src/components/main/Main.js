@@ -4,7 +4,7 @@ import { UsersList } from "../users/users-list/UsersList";
 import { UserForm } from "../users/user-form/UserForm";
 import { TasksList } from "../tasks/tasks-list/TasksList";
 import {TaskForm} from "../tasks/task-form/TaskForm";
-import {Task} from "/home/eugene/Desktop/tasks-management-system-frontend/src/components/tasks/task/Task.js";
+import {Task} from "../tasks/task/Task.js";
 
 export function Main() {
     return (

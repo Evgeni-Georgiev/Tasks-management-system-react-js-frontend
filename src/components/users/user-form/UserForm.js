@@ -7,7 +7,7 @@ import {useNavigate, useParams} from "react-router-dom";
 
 export function UserForm() {
 
-    const loggedUser = getLoggedUser();
+    // const loggedUser = getLoggedUser();
 
     const params = useParams();
     const navigate = useNavigate();
